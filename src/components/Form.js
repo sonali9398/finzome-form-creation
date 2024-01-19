@@ -1,19 +1,8 @@
 import React, { useState } from 'react'
 
 const Form = () => {
-    // const [name, setName] = useState("");
-    // const[mail, setMail] = useState("");
-
-    // function changeHandler(e){
-    //     console.log(e.target.value)
-    //     setName(e.target.value)
-    // }
-    // function emailHandler(e){
-    //     console.log(e.target.value)
-    //     setMail(e.target.value)
-    // }
-
-    const [form, setForm] = useState( {name:"", mail:"", contact:'', weekday:true, mode:'', edu:''} )
+   
+    const [form, setForm] = useState( {name:"", mail:"", contact:'', weekday:true, mode:'', edu:'', opt:''} )
 
     function changeHandler(e){
         const {name, mail, contact, weekday, value}= e.target
@@ -24,10 +13,11 @@ const Form = () => {
             }
         });
     }
-    console.log(form)
     function submitHandler(e){
         e.preventDefault();
-        console.log('Form submitted')
+        // console.log('Form submitted')
+    // console.log(form)
+
     }
   return (
     <form  onSubmit={submitHandler}>
@@ -60,8 +50,22 @@ const Form = () => {
             onChange={changeHandler}
             checked={FormData.weekday}
         />
-        <label htmlFor='weekday'>weekday</label>
+        <label htmlFor='weekday'>Weekday</label>
+
+        <select
+            name='weekday'
+            id='weekday'
+            value={form.weekday}
+            onChange={changeHandler}>
+            <option value='mon'>Monday</option>
+            <option value='tues'>Tuesday</option>
+            <option value='wed'>Wednesday</option>
+            <option value='thu'>Thursday</option>
+            <option value='fri'>Friday</option>
+
+        </select>
         <br/>
+        <label>Gender :</label>
         <input
             name='mode'
             type='radio'
@@ -70,7 +74,8 @@ const Form = () => {
             id='Online-Mode'
             checked={form.mode === 'Online-Mode'}
         />
-        <label htmlFor='Online-Mode'>Radio Button</label>
+
+        <label htmlFor='Online-Mode'>Male</label>
         <input
             name='mode'
             type='radio'
@@ -79,7 +84,7 @@ const Form = () => {
             id='Online-Mode2'
             checked={form.mode === 'Online-Mode2'}
         />
-        <label htmlFor='Online-Mode2'>Second Button</label>
+        <label htmlFor='Online-Mode2'>Female</label>
         <br/>
         <label htmlFor='edu'>Enter Education Details</label>
         <select
@@ -93,6 +98,12 @@ const Form = () => {
             <option value="post">Post Grad</option>
             <option value="others">Others</option>
         </select>
+        <br/>
+        <label>Date of Birth</label>
+        <input
+            type='date'
+            placeholder='Enter DOB'
+        />
         <br/>
         <button>Submit</button>
 
